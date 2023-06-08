@@ -19,7 +19,7 @@
                 <div class="container">
                     <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <div class=" container-fluid">
-                        <a class="navbar-brand" href="index.html">
+                        <a class="navbar-brand" href="{{url_for('main.index')}}">
                             <img src="pictures/logo.JPG" class="img-fluid" alt="Music Emblem">
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
@@ -31,10 +31,10 @@
                                     <a class="nav-link" href="{{url_for('main.index')}}">Home<span class="sr-only"></span></a>
                                   </li>
                                   <li class="nav-item">
-                                    <a class="nav-link" href="events.html">Events</a>
+                                    <a class="nav-link" href="{{url_for('event.eventinfo')}}">Events</a>
                                   </li>
                                   <li class="nav-item">
-                                    <a class="nav-link" href="order_history.html">Order History</a>
+                                    <a class="nav-link" href="{{url_for('event.orderhistory')}}">Order History</a>
                                   </li>
                                   <li class="nav-item">
                                     <a class="nav-link" href="{{url_for('event.create')}}">Create Event</a>
@@ -46,8 +46,8 @@
                                     <a class="nav-link" style="padding-right:set_padding"href="{{url_for('auth.register')}}">Register</a>
                                   </li>
                                   </ul>
-                                <form class="d-flex">
-                                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                                <form class="d-flex" method="GET">
+                                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searching">
                                   <button class="btn btn-outline-success" type="submit">Search</button>
                                 </form>
                                 <br>

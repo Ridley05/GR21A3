@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from .forms import LoginForm, RegisterForm
+from flask_login import login_user, logout_user
 
 # Create a blueprint
 authbp = Blueprint('auth', __name__ )
@@ -20,3 +21,8 @@ def register():
         print('Successfully registered')
         return redirect(url_for('auth.login'))
     return render_template('user.html', form=form)
+
+@authbp.route('/logout')
+def logout():
+    logout_user()
+    return 'Sucessfully logged user out'

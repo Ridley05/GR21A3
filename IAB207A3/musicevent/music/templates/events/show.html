@@ -13,8 +13,7 @@
         </div>  
  
         <div class="float-right text-right">  
-          <p class="mb-0">1 AUD equals</p>  
-          <h2 id="exchange-rate">0.62 {{ event.currency }}</h1>  
+          <p class="mb-0">This is MUSIC</p>  
         </div>  
       </div>  
     </div>  
@@ -49,7 +48,7 @@
       {{ render_form(form,"/events/{0}/comment".format(event.id)) }} 
       {% for comment in event.comments %}
       <div class="col-md-12">  
-        <b>{{ comment.user }} <span class="ml-2 text-muted">January 2024</span></b>
+        <b>{{ comment.user }} <span class="ml-2 text-muted">October 2023</span></b>
         <p>{{ comment.text }}</p>  
       </div> 
       {% endfor %} 

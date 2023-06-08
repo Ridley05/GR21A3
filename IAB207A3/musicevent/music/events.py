@@ -8,6 +8,18 @@ from werkzeug.utils import secure_filename
 
 evenbp = Blueprint('event', __name__, url_prefix='/events')
 
+@evenbp.route('/events')
+def eventinfo():
+    return render_template('events.html')
+
+@evenbp.route('/orderhistory')
+def orderhistory():
+    return render_template('order_history.html')
+
+@evenbp.route('/MayDay')
+def MayDay():
+   return render_template('event_information.html')
+
 @evenbp.route('/<id>')
 def show(id):
     event = db.session.scalar(db.select(Event).where(Event.id==id))
@@ -62,7 +74,6 @@ def check_upload_file(form):
   return db_upload_path
 
 @evenbp.route('/<event>/comment', methods=['GET', 'POST'])  
-@login_required
 def comment(event):  
     form = CommentForm()  
     # Get the event object associated to the page and the comment
@@ -79,3 +90,14 @@ def comment(event):
       print('Your comment has been added', 'success') 
     # Using redirect sends a GET request to event.show
     return redirect(url_for('event.show', id=event.id))
+
+@evenbp.route('/events')
+def search_events():
+    searching = request.args.get('searching')
+
+    if searching:
+       events = Event.query.filter(Event.title.contains(searching) | Event.body.contains(searching))
+    else:
+       events = Event.query.all()
+    event = db.session.scalar(db.select(Event).where(Event.id==id))
+    return render_template('events/show.html', event=event)
