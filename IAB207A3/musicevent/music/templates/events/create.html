@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% from 'bootstrap5/form.html' import render_form %}
+
+{% block content %}
+<div class="jumbotron bg-light">
+  <div class="container">
+    <div class="row mt-5">
+      <div class="p-1 mb-2 bg-secondary text-center text-white">
+
+        <h1>Create or Update Your Music Event</h1>
+        <p>What type of music do you want to promote?</p>
+        </div>
+
+        {{ render_form(form) }}
+        
+    </div>
+  </div>
+</div>
+{% endblock %}
