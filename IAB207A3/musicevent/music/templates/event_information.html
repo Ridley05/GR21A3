@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% from 'bootstrap5/form.html' import render_form %}
+
 {% block header %}
     <section id="middle">
         <div class="jumbotron bg-light">
@@ -48,7 +50,7 @@
                       <br>
                       <select class="form-select" aria-label="Default select example">
                         <option selected>Select the Venue</option>
-                        <option value="1">Sdyney</option>
+                        <option value="1">Sydney</option>
                         <option value="2">Melbourne</option>
                       </select>
                       <span style="color:red";>*Must Select</span>
@@ -56,10 +58,10 @@
                       <br>
                 </div>
                 <div class="lower">
-                    <a href="booking_confirmation.html">
+                    <a href="{{url_for('event.confirmation')}}">
                         <button class="btn btn-info">Book</button>
                     </a>
-                    <a href="events.html">
+                    <a href="{{url_for('main.index')}}">
                         <button class="btn btn-secondary">Exit</button>
                     </a>
                     <br>

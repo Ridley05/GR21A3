@@ -18,7 +18,11 @@ def orderhistory():
 
 @evenbp.route('/MayDay')
 def MayDay():
-   return render_template('event_information.html')
+  return render_template('event_information.html')
+
+@evenbp.route('/confirmation')
+def confirmation():
+  return render_template('booking_confirmation.html')
 
 @evenbp.route('/<id>')
 def show(id):
