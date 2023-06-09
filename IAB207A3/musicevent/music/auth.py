@@ -18,7 +18,7 @@ def login():
         if u1 is None:
             error = 'Incorrect username'
         elif not check_password_hash(u1.password_hash, password):
-            errpr = 'Incorrect password'
+            error = 'Incorrect password'
         if error is None:
             login_user(u1)
             return redirect(url_for('main.index'))
