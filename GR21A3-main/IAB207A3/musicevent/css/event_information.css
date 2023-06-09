@@ -1,0 +1,30 @@
+img{
+    max-width: 100%;
+}
+
+header li{
+    margin: 0 50px;
+}
+
+#middle h1{
+    font-size: 40px;
+}
+
+#middle .lower h6{
+    font-size: 30px;
+    margin-right: 15px;
+}
+
+#middle img{
+    width: 600px;
+    height: 500px;
+    margin-bottom: 30px;
+}
+
+#middle h3{
+    font-size: 18px;
+}
+
+#last .comment{
+    margin-top: 30px;
+}
