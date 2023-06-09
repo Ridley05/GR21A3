@@ -49,6 +49,7 @@ def login():
    return render_template('user.html', form=login_form, heading='Login')
 
 @authbp.route('/logout')
+@login_required
 def logout():
     logout_user()
     return redirect(url_for('main.index'))
