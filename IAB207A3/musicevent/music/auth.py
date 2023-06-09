@@ -14,7 +14,7 @@ def login():
     if(login_form.validate_on_submit() == True):
         user_name = login_form.user_name.data
         password = login_form.password.data
-        u1 = User.query.filter_by(name = user_name).first()
+        u1 = User.query.filter_by(name=user_name).first()
         if u1 is None:
             error = 'Incorrect username'
         elif not check_password_hash(u1.password_hash, password):
