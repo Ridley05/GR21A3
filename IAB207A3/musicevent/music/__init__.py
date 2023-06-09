@@ -8,7 +8,6 @@ db = SQLAlchemy()
 
 def create_app():
     app = Flask(__name__)
-    app.debug = True
 
     # We use this utility module to display forms quickly
     bootstrap = Bootstrap5(app)
