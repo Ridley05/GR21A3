@@ -43,7 +43,7 @@ def create_app():
     from . import events
     app.register_blueprint(events.evenbp)
     from . import auth
-    app.register_blueprint(auth.bp)
+    app.register_blueprint(auth.authbp)
     
     app.register_error_handler(404, page_not_found)
 
