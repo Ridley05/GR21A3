@@ -16,11 +16,24 @@ def create_app():
 
     # Configue and initialise DB
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///eventdb.sqlite'
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
     db.init_app(app)
 
     #config upload folder
     UPLOAD_FOLDER = '/static/image'
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER 
+    
+    #initialize the login manger
+    login_manager = LoginManager()
+    login_manager.login_view='auth.login'
+    login_manger.init_app(app)
+    from .models import User
+    @login_manager.user_loader
+    def load_user(user_id):
+        return User.query.get(int(user_id))
+    @app.errorhandler(404)
+    def page_not_found(e):
+        return render_template('404.html'), 404
     
     # Add Blueprints
     from . import views
@@ -29,5 +42,7 @@ def create_app():
     app.register_blueprint(events.evenbp)
     from . import auth
     app.register_blueprint(auth.authbp)
+    
+    app.register_error_handler(404, page_not_found)
 
     return app
