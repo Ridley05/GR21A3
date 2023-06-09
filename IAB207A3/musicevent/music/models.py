@@ -6,12 +6,15 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), index=True, unique=True, nullable=False)
     emailid = db.Column(db.String(100), index=True, nullable=False)
+    phone = db.Column(db.String(100), index=True, nullable=False)
+    address = db.Column(db.Text, index=True, nullable=False)
 	# Password is encrypted and stored
 	# Storage should be at least 255 chars long
     password_hash = db.Column(db.String(255), nullable=False)
 
     # Relation to call user.comments and comment.created_by
     comments = db.relationship('Comment', backref='user')
+    events = db.relationship('Event', backref='user')
 
 class Event(db.Model):
     __tablename__ = 'events'
