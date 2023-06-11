@@ -1,17 +1,21 @@
 from . import db
 from datetime import datetime
+from flask_login import UserMixin
 
-class User(db.Model):
+class User(db.Model, UserMixin):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), index=True, unique=True, nullable=False)
     emailid = db.Column(db.String(100), index=True, nullable=False)
+    phone = db.Column(db.String(100), index=True, nullable=False)
+    address = db.Column(db.Text, index=True, nullable=False)
 	# Password is encrypted and stored
 	# Storage should be at least 255 chars long
     password_hash = db.Column(db.String(255), nullable=False)
 
     # Relation to call user.comments and comment.created_by
-    comments = db.relationship('Comment', backref='user')
+    comments = db.relationship('models.Comment', backref='user')
+    events = db.relationship('models.Event', backref='user')
 
 class Event(db.Model):
     __tablename__ = 'events'
@@ -26,11 +30,12 @@ class Event(db.Model):
     ticketnumber = db.Column(db.Integer)
     ticketprice = db.Column(db.Float(80))
     ticketlimit = db.Column(db.Integer)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
     # Create the Comments db.relationship
 	# Relation to call event.comments and comment.event
-    comments = db.relationship('Comment', backref='event')
-	
+    comments = db.relationship('models.Comment', backref='event')
+
     def __repr__(self): # String print method
         return "<Name: {}>".format(self.name)
 
@@ -41,20 +46,8 @@ class Comment(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.now())
     # Add foreign key relations for each user and each music event
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    event_id = db.Column(db.Integer, db.ForeignKey('event.id'))
-
-    def __repr__(self):
-        return "<Comment: {}>".format(self.text)
-
-class Booking(db.Model):
-    __tablename__ = 'bookings'
-    id = db.Column(db.Integer, primary_key=True)
-    price = db.Column(db.Float)
-    quantity = db.Column(db.Integer)
-    date = db.Column(db.DateTime, default=datetime.now())
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     event_id = db.Column(db.Integer, db.ForeignKey('events.id'))
 
     def __repr__(self):
-        return "<Booking: {}>".format(self.id)
+        return "<Comment: {}>".format(self.text)
 
