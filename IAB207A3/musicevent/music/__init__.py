@@ -15,7 +15,7 @@ def create_app():
     app.secret_key = 'IAB207musicevent2023'
 
     # Configue and initialise DB
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///eventdb.sqlite'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///events.db'
     db.init_app(app)
 
     #config upload folder
